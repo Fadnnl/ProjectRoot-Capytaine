@@ -52,3 +52,5 @@ Thumbs.db
 *.vtk
 *.vtu
 
+# Ignore problematic symlink
+capytaine-src/src/capytaine/green_functions/libDelhommeau/src/FinGreen3D.f90
