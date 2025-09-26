@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend-go
+    ports:
+      - "9000:9000"   # REST/SSE
+      - "7878:7878"   # RSocket
+    networks:
+      - appnet
+
+  worker:
+    build: ./CapytaineWorker
+    container_name: capytaine-worker
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"   # FastAPI worker
+    networks:
+      - appnet
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./CapytaineWorker/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - appnet
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

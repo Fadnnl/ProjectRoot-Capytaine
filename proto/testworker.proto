@@ -1,0 +1,21 @@
+syntax = "proto3";
+package testworker;
+
+message SimRequest {
+  string scenario = 1;
+  uint32 iterations = 2;      // total iterations to run inside worker
+  uint32 concurrency = 3;     // how many threads the worker should use internally
+  map<string,string> params = 4; // optional extra params
+}
+
+message SimReply {
+  string status = 1;         // "ok" / "error"
+  string message = 2;        // extra info (path to artifact / error)
+  double elapsed_seconds = 3;
+  uint32 iterations_done = 4;
+}
+
+service TestWorker {
+  // control plane calls once; worker does the heavy lifting internally
+  rpc RunSimulation(SimRequest) returns (SimReply);
+}

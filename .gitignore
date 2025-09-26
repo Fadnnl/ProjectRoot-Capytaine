@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtualenv
+venv/
+venv_dev/
+.env
+.env.*
+
+# Pip cache
+pip-wheel-metadata/
+*.whl
+
+# Capytaine / build artefacts
+build/
+tmp/
+*.npz
+*.mar
+
+# Protobuf generated
+*_pb2.py
+*_pb2_grpc.py
+
+# Docker
+docker-compose.override.yml
+**/Dockerfile
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Large data / outputs (customize)
+*.h5
+*.vtk
+*.vtu
+
